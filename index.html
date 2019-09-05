@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TMDB</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" integrity="sha256-piqEf7Ap7CMps8krDQsSOTZgF+MU/0MPyPW2enj5I40=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <script src="ajax.js" defer></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="modal" v-show="modal">
+        <div class="closeModal" @click="modal = !modal"><i class="fas fa-window-close"></i></div>
+          <div class="modalContent">
+            <div class="modalContentImg"  div v-bind:style="{ background: 'url(' + scrLoad + srcImg + ') center center no-repeat'}">
+                   <!-- <img class="imgModal" :src="scrLoad + srcImg"> -->
+            </div>
+            <div class="modelContentInfo">
+                <div class="titleModal">{{ asvResponse.title }}</div> 
+                <div class="idModal">id {{ asvResponse.id }}</div> 
+                <div class="tegModal">{{ asvResponse.tagline }}</div> 
+                <div class="overviewModal">{{ asvResponse.overview }}</div>       
+            </div>       
+          </div>   
+          <div class="modalContent second">
+            <div class="modalContentImg left">
+                <div class="idModal">бюджет {{ asvResponse.budget }}</div>     
+                <div class="idModal">дата выпуска {{ asvResponse.release_date }}</div> 
+                <div class="idModal">популярность {{ asvResponse.popularity }}</div> 
+                <div class="idModal">оценка {{ asvResponse.vote_average }}</div> 
+            </div>
+            <div class="modelContentInfo">        <iframe id="ytplayer" fs="1" type="text/html" :src="videoLink" frameborder="0"></iframe></div>
+          </div>         
+      </div>
+      <div class="searchType">
+        <p @click="[searchPanel= !searchPanel, genresPanel = ! genresPanel, page = 1,  genreSearch(), movePage = false], error = ''">Клик для поиска по {{ genresPanel ? "названию" : "жанру" }}?</p>
+      </div>
+    <div class="search" v-show="searchPanel">
+      <input type="text" v-model="search" @change="[page = 1,ajax(), movePage=true]" placeholder="название фильма" />
+      <!-- <input class="searchButton" type="button" id="ip" value="поиск" @click="[page = 1,ajax(), movePage=true]" /> -->
+      <select v-model="genresNumber" @click="ajax">
+        <option value="28">боевик</option>
+        <option value="12">приключения</option>
+        <option value="16">мультфильм</option>
+        <option value="35">комедия</option>
+        <option value="80">криминал</option>
+        <option value="99">документальный</option>
+        <option value="18">драма</option>
+        <option value="10751">семейный</option>
+        <option value="14">фэнтези</option>
+        <option value="36">история</option>
+        <option value="27">ужасы</option>
+        <option value="10402">музыка</option>
+        <option value="9648">детектив</option>
+        <option value="10749">мелодрама</option>
+        <option value="878">фантастика</option>
+        <option value="10770">телевизионный фильм</option>
+        <option value="53">триллер</option>
+        <option value="10752">военный</option>
+        <option value="37">вестерн</option>
+        <option value="0">сброс фильтра</option>
+      </select>
+    </div>
+          <div class="genres" v-show="genresPanel">
+    <label>
+     <input type="radio" name="genres" v-model="genres" @click=" [page = 1,  genres=28,  genreSearch() ,movePage=true]" value="28"> боевик</input>
+    </label>
+    <label>
+    <input type="radio" name="genres" v-model="genres" @click=" [genres=12, page = 1,  genreSearch(),movePage=true]" value="12"> приключения</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [ genres=16, page = 1,  genreSearch(),movePage=true]" value="16"> мультфильм</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [ genres=35, page = 1,  genreSearch(),movePage=true]" value="35"> комедия</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [ genres=80, page = 1,  genreSearch(),movePage=true]" value="80"> криминал</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [ genres=99, page = 1,  genreSearch(),movePage=true]" value="99"> документальный</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [ genres=18, page = 1,  genreSearch(),movePage=true]" value="18"> драма</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=10751, page = 1,  genreSearch(),movePage=true]" value="10751"> семейный</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=14, page = 1,  genreSearch(),movePage=true]" value="14"> фэнтези</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [ genres=36, page = 1,  genreSearch(),movePage=true]" value="36"> история</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=27, page = 1,  genreSearch(),movePage=true]" value="27"> ужасы</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=10402, page = 1,  genreSearch(),movePage=true]" value="10402"> музыка</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=9648, page = 1,  genreSearch(),movePage=true]" value="9648"> детектив</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=10749, page = 1,  genreSearch(),movePage=true]" value="10749"> мелодрама</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=878, page = 1,  genreSearch(),movePage=true]" value="878"> фантастика</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=10770, page = 1,  genreSearch(),movePage=true]" value="10770"> телевизионный фильм</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=53, page = 1,  genreSearch(),movePage=true]" value="53"> триллер</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=10752, page = 1,  genreSearch(),movePage=true]" value="10752"> военный</input>
+    </label>
+    <label>
+        <input type="radio" name="genres" v-model="genres" @click=" [genres=37, page = 1,  genreSearch(),movePage=true]" value="37"> вестерн</input>
+    </label>
+          </div>
+        <!-- можно сделать подтягиванием данных из api -->
+       <h2 class="error">{{error}}</h2> 
+        <div class="movePage" v-show="movePage" v-if="movePageTwo">
+            <p @click="[prewPage(),  genreSearch($event),  ajax()]"> <i class="fas fa-backward"></i></p>
+            <div class="pages">{{page}} из {{allPages}}</div> 
+            <p @click="[nextPage(),  genreSearch($event),  ajax()]"> <i class="fas fa-forward"></i></p>
+          </div>
+      <ul class="card">
+        <li
+          v-for="res in response"
+          @click="[swap(res.id),advAjax(), modal = true]"
+        >
+        <img :src="scrLoad + res.poster_path">
+         <div class="title">{{ res.title }}</div> 
+        </li>
+      </ul>
+      <div class="movePage" v-show="movePage">
+        <p @click="[prewPage(),  genreSearch($event),  ajax()]"> <i class="fas fa-backward"></i></p>
+        <div class="pages">{{page}} из {{allPages}}</div> 
+        <p @click="[nextPage(),  genreSearch($event),  ajax()]"> <i class="fas fa-forward"></i></p>
+      </div>
+    </div>
+  </body>
+</html>
