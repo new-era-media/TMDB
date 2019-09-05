@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css?family=Russo+One&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+.app{
+  background-color: #000;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+font-family: 'Russo One', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.searchType{
+  width: auto;
+  height: 30px;
+  margin: 10px;
+  font-family: 'Tinos', serif;
+  font-size: 20px;
+}
+img {
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+}
+.imgModal{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.card li{
+  width: 300px;
+  height: 500px;
+  background-color: #fff;
+  border: white 1px solid;
+  margin: 20px;
+  list-style-type: none;
+}
+.card .title{
+  margin: 10px 0px 0px 5px;
+  font-weight: 700;
+  color: #000;
+}
+.modal {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 1);
+  position: fixed;
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  /* overflow-y:scroll; */
+}
+.modal::-webkit-scrollbar{
+  width:0;
+  background-color:transparent;
+}
+.modalContent{
+    width: 100%;
+    min-width: 300px;
+    height: auto;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-family: 'Tinos', serif;
+}
+.modalContentImg{
+    background-size: contain !important;
+    height: 100%;
+    max-height: 900px;
+    width: 300px;
+}
+.modelContentInfo{
+    height: 100%;
+    min-width: 300px;
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Tinos', serif;
+}
+.left{
+    display: flex;
+    align-items: flex-start !important;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Tinos', serif;
+}
+iframe{
+    width: 100%;
+    height: 400px;
+}
+.titleModal{
+    font-size: 24px;
+}
+.titleModal, .tegModal, .idModal, .overviewModal{
+    margin: 10px;
+    font-family: 'Russo One', sans-serif;
+    text-align: right;
+}
+.tegModal{
+    font-style: italic;
+}
+
+
+.closeModal{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
+}
+input{
+  color: #000;
+}
+select,option{
+    color: #000;
+}
+select{
+  border-radius: 0 10px 10px 0;
+  padding-left: 10px;
+  height: 40px;
+  width: 150px;
+  font-weight: bold;
+  outline: none;
+  font-family: 'Tinos', serif;
+  border: none;
+  font-size: 14px;
+  /* border: 1px rgb(94, 94, 245) solid; */
+  box-sizing: border-box;
+}
+input[type="radio"]{
+   display: none;
+   margin: 10px;
+
+}
+input[type="text"]{
+  border-radius: 10px 0 0 10px;
+  padding-left: 10px;
+  height: 40px;
+  width: 150px;
+  font-weight: bold;
+  outline: none;
+  font-family: 'Tinos', serif;
+  border: none;
+  font-size: 14px;
+  /* border: 1px rgb(94, 94, 245) solid; */
+  box-sizing: border-box;
+}
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin: 5px;
+}
+label{
+   padding: 5px;
+   margin: 5px;
+   border-radius: 30px;
+   background-color: rgb(192, 190, 190);
+}
+.genres{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-width: 50px;
+    width: auto;
+}
+.movePage{
+  margin: 10px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pages{
+  padding: 0 10px 0 10px;
+}
+.error{
+  text-align: center;
+  color: white;
+}
+
+@media screen and (max-width: 1000px) {
+    .modal {
+        width: 100%;
+        min-height: 100vh;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 1);
+        position: fixed;
+        display: block;
+        overflow-y:scroll;
+      }
+      .left{
+        height: 200px !important;
+        display: flex;
+        align-items: flex-start !important;
+        justify-content: center;
+        flex-direction: column;
+        font-family: 'Tinos', serif;
+    }
+    .modalContent{
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    .modalContentImg{
+        height: 600px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .imgModal{
+        width: 300px;
+        height: 500px;
+        object-fit: cover;
+        margin: 0 auto;
+    }
+    .modelContentInfo{
+        display: block;
+        align-items: flex-end;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+    iframe{
+        width: 100% !important;
+        height: 400px;
+    }
+}
