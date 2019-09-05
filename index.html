@@ -36,7 +36,7 @@
           </div>         
       </div>
       <div class="searchType">
-        <p @click="[searchPanel= !searchPanel, genresPanel = ! genresPanel, page = 1,  genreSearch(), movePage = false], error = ''">Клик для поиска по {{ genresPanel ? "названию" : "жанру" }}?</p>
+        <button class="swap" @click="[searchPanel= !searchPanel, genresPanel = ! genresPanel, page = 1,  genreSearch(), movePage = false], error = ''">Клик для поиска по {{ genresPanel ? "названию" : "жанру" }}?</button>
       </div>
     <div class="search" v-show="searchPanel">
       <input type="text" v-model="search" @change="[page = 1,ajax(), movePage=true]" placeholder="название фильма" />
