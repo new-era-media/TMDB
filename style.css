@@ -86,6 +86,7 @@ img {
     height: 100%;
     max-height: 900px;
     width: 300px;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .modelContentInfo{
     height: 100%;
@@ -96,6 +97,7 @@ img {
     justify-content: center;
     flex-direction: column;
     font-family: 'Tinos', serif;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .left{
     display: flex;
@@ -209,6 +211,27 @@ label{
   border-radius: 20px;
   outline: none;
 }
+.modal-leave-active, .modal-enter-active {
+  transition: all .7s;
+}
+
+.modal-leave-to, .modal-enter{
+  transform: translateX(-100%);
+  /* opacity: 0; */
+}
+
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 @media screen and (max-width: 1000px) {
     .modal {
         width: 100%;
